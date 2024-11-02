@@ -10,10 +10,11 @@ app.listen(port, () => {
 });
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "node_mcu",
+  host: "kpqmn.h.filess.io",
+  user: "nodemcu_currentbuy",
+  password: "1836e3ba74a5af8b5096a9f2fb0d11d145574fee",
+  database: "nodemcu_currentbuy",
+  port: 3307
 });
 db.on("connect", () => {
   console.log("Database connected");
