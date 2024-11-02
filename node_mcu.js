@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
 app.get("/settings/status", (req, res) => {
   const sql = "SELECT state FROM settings";
   db.query(sql, (err, result) => {
+    if (err) return res.json({error: "failed to fetch state", message: err.message});
     res.json(result);
   });
 });
