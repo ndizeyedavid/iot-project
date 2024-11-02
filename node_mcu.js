@@ -20,7 +20,7 @@ db.on("connect", () => {
   console.log("Database connected");
 });
 db.on("error", (err) => {
-  console.log("failed to connect db");
+  console.log("failed to connect db " + err);
 });
 app.get("/", (req, res) => {
   res.json({ message: "Backend is live" });
