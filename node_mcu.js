@@ -10,11 +10,11 @@ app.listen(port, () => {
 });
 
 const db = mysql.createConnection({
-  host: "kpqmn.h.filess.io",
-  user: "nodemcu_currentbuy",
-  password: "1836e3ba74a5af8b5096a9f2fb0d11d145574fee",
-  database: "nodemcu_currentbuy",
-  port: 3307
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "node_mcu",
+  port: 3306,
 });
 db.on("connect", () => {
   console.log("Database connected");
@@ -30,5 +30,18 @@ app.get("/settings/status", (req, res) => {
   const sql = "SELECT state FROM settings";
   db.query(sql, (err, result) => {
     res.json(result);
+  });
+});
+
+app.put("/settings/update", (req, res) => {
+  const state = req.body.state;
+  const sql = "UPDATE settings SET state=?";
+  db.query(sql, [state], (err, result) => {
+    if (err)
+      return res.status.json({
+        error: "Failed to update gpio state",
+        message: err.message,
+      });
+    res.json({ success: "Gpio state changed" });
   });
 });
