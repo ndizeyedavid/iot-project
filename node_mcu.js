@@ -45,6 +45,6 @@ app.put("/settings/update", (req, res) => {
         error: "Failed to update gpio state",
         message: err.message,
       });
-    res.json({ success: "Gpio state changed" });
+    res.json({ success: "Gpio state changed", state: state == 1 ? 0 : 1 });
   });
 });
