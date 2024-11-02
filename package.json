@@ -1,0 +1,19 @@
+{
+  "name": "node_js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon node_mcu.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongoose": "^8.7.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.3",
+    "nodemon": "^3.1.7"
+  },
+  "description": ""
+}
