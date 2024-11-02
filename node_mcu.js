@@ -41,7 +41,7 @@ app.put("/settings/update", (req, res) => {
   const sql = "UPDATE settings SET state=?";
   db.query(sql, [state], (err, result) => {
     if (err)
-      return res.status.json({
+      return res.status(400).json({
         error: "Failed to update gpio state",
         message: err.message,
       });
