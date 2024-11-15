@@ -31,7 +31,8 @@ app.get("/", (req, res) => {
 app.get("/settings/status", (req, res) => {
   const sql = "SELECT state FROM settings";
   db.query(sql, (err, result) => {
-    if (err) return res.json({error: "failed to fetch state", message: err.message});
+    if (err)
+      return res.json({ error: "failed to fetch state", message: err.message });
     res.json(result);
   });
 });
@@ -48,3 +49,16 @@ app.put("/settings/update", (req, res) => {
     res.json({ success: "Gpio state changed", state: state == 1 ? 0 : 1 });
   });
 });
+
+let resetId;
+const alarmReseter = () => {
+  const sql = "UPDATE settings SET state=0";
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log("Failed to reset alarm timer");
+      clearInterval(resetId);
+    }
+  });
+};
+
+resetId = setInterval(alarmReseter, 5000);
