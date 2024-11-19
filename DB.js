@@ -1,10 +1,11 @@
 import mysql2 from "mysql2";
 
 const DBConnect = mysql2.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "iot_alarm",
+  host: "kpqmn.h.filess.io",
+  user: "nodemcu_currentbuy",
+  password: "1836e3ba74a5af8b5096a9f2fb0d11d145574fee",
+  database: "nodemcu_currentbuy",
+  port: "3307",
 });
 
 DBConnect.on("connect", () => {
