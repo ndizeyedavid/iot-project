@@ -11,11 +11,9 @@ const getAlarmState = (req, res) => {
   });
 };
 const changeAlarmState = (req, res) => {
-  const d = new Date();
-  let now = d.toISOString();
-
-  const sql = "UPDATE alarm SET alarm_state = ?, last_ring_time=?";
-  DBConnect.query(sql, [1, now], (err, result) => {
+  
+  const sql = "UPDATE alarm SET alarm_state = ?";
+  DBConnect.query(sql, [1], (err, result) => {
     if (err)
       return res
         .status(500)
