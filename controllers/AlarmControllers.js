@@ -25,11 +25,12 @@ const changeAlarmState = (req, res) => {
 };
 
 const resetAlarmState = () => {
-  const sql = "UPDATE alarm SET alarm_state = ?";
-  DBConnect.query(sql, [0], (err, result) => {
-    if (err)
-      return console.log("Failed to reset alarm_state. ERROR: ", err.message);
-  });
+  // const sql = "UPDATE alarm SET alarm_state = ?";
+  // DBConnect.query(sql, [0], (err, result) => {
+  //   if (err)
+  //     return console.log("Failed to reset alarm_state. ERROR: ", err.message);
+  // });
+  null
 };
 
 export { getAlarmState, changeAlarmState, resetAlarmState };
