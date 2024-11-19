@@ -1,19 +1,21 @@
 import mysql2 from "mysql2";
+import dotenv from "dotenv";
+dotenv.config();
 
-const DBConnect = mysql2.createConnection({
-  host: "kpqmn.h.filess.io",
-  user: "nodemcu_currentbuy",
-  password: "1836e3ba74a5af8b5096a9f2fb0d11d145574fee",
-  database: "nodemcu_currentbuy",
-  port: "3307",
+const DB = mysql2.createConnection({
+  host: process.env.DB_SERVER,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
 });
 
-DBConnect.on("connect", () => {
-  console.log("Database connected successfully");
+DB.on("connect", () => {
+  console.log("Database connected");
 });
 
-DBConnect.on("error", (err) => {
-  console.log("Failed to database. ERROR:  ", err);
+DB.on("error", (err) => {
+  console.log("An error occured. ERROR: ", err.message);
 });
 
-export default DBConnect;
+export default DB;

@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
-import DBConnect from "./DB.js";
-// Api Routers
+import dotenv from "dotenv";
+import userRoutes from "./routers/userRoutes/userRoutes.js";
 
-import AlarmRouter from "./routers/AlarmRouter.js";
+dotenv.config();
 
-const port = 8900;
+const port = process.env.PORT;
 
 const app = express();
 
@@ -13,18 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.listen(port, () => {
-  console.log("Server is running");
+  console.log("Server is running. PORT:", port);
 });
 
-app.use("/api", AlarmRouter);
-
-// alarm timer reset
-
-function resetAlarm() {
-  const sql = "UPDATE alarm set alarm_state = 0";
-  DBConnect.query(sql, (err, result) => {
-    if (err) return console.log("Can't reset timer");
-  });
-}
-
-setInterval(resetAlarm, 10000);
+app.use("/api/user", userRoutes);
