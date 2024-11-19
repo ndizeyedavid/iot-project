@@ -27,4 +27,4 @@ function resetAlarm() {
   });
 }
 
-setInterval(resetAlarm, 5000);
+setInterval(resetAlarm, 10000);
