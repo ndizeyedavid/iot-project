@@ -17,3 +17,14 @@ app.listen(port, () => {
 });
 
 app.use("/api", AlarmRouter);
+
+// alarm timer reset
+
+function resetAlarm() {
+  const sql = "UPDATE alarm set alarm_state = 0";
+  DBConnect.query(sql, (err, result) => {
+    if (err) return console.log("Can't reset timer");
+  });
+}
+
+setInterval(resetAlarm, 5000);
